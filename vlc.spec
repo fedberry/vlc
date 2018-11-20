@@ -287,6 +287,10 @@ rm aclocal.m4 m4/lib*.m4 m4/lt*.m4 || :
 . /opt/rh/devtoolset-7/enable
 %endif
 
+# Lets try some neon optimisations for RPi2/3's
+CFLAGS=$(echo %{optflags} |sed s'/vfpv3-d16/neon-vfpv4/')
+export CFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS"
+
 %configure \
 	--disable-dependency-tracking		\
 	--disable-optimizations			\
