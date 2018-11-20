@@ -531,6 +531,8 @@ fi || :
 %dir %{_libdir}/vlc/plugins
 %dir %{_libdir}/vlc/plugins/vdpau
 %{_libdir}/vlc/plugins/vdpau/libvdpau_*_plugin.so
+%dir %{_libdir}/vlc/plugins/mmal
+%{_libdir}/vlc/plugins/mmal/libmmal_*_plugin.so
 %{_libdir}/vlc/vlc-cache-gen
 %{_libdir}/vlc/plugins
 %{_mandir}/man1/vlc*.1*
