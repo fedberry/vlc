@@ -390,19 +390,13 @@ if [ $1 == 1 ] ; then
 fi || :
 
 %{_bindir}/touch --no-create %{_datadir}/icons/hicolor
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor
-fi 
 %{_bindir}/update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %postun
 %{?ldconfig}
 %{_libdir}/vlc/vlc-cache-gen %{_libdir}/vlc/plugins &>/dev/null
 %{_bindir}/update-desktop-database %{_datadir}/applications &>/dev/null
-%{_bindir}/touch --no-create %{_datadir}/icons/hicolor
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor
-fi || :
+
 
 %posttrans core
 %{_libdir}/vlc/vlc-cache-gen %{_libdir}/vlc/plugins &>/dev/null || :
