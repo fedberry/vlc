@@ -8,22 +8,13 @@
 %endif
 %global _with_bootstrap		1
 %global _with_workaround_circle_deps 1
-%if 0%{?!_without_freeworld:1}
 %global _with_a52dec 1
-%global _with_faad2 1
 %global _with_ffmpeg 1
-%global _with_libdca 1
 %global _with_libdvbpsi	1
 %global _with_libmad 1
-%global _with_libmpeg2 1
 %global _with_twolame 1
 %global _with_x264 1
-%global _with_x265 1
 %global _with_xvidcore 1
-%global _with_live555 1
-%global _with_vaapi 1
-%endif
-%global _with_bluray    1
 %if 0%{?fedora}  && 0%{?fedora} < 28
 %global _with_opencv    1
 %endif
@@ -67,7 +58,6 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	avahi-devel
 BuildRequires:	cdparanoia-devel
 BuildRequires:	pkgconfig(dbus-1)
-%{?_with_faad2:BuildRequires: faad2-devel}
 %{?_with_ffmpeg:BuildRequires: ffmpeg-devel >= 0.4.9-0}
 BuildRequires:	flac-devel
 %{?_with_fluidsynth:BuildRequires: fluidsynth-devel}
@@ -84,7 +74,6 @@ BuildRequires:	pkgconfig(gstreamer-video-1.0)
 %endif
 BuildRequires:	libavc1394-devel
 BuildRequires:	libass-devel >= 0.9.7
-%{?_with_bluray:BuildRequires: libbluray-devel >= 0.2.1}
 BuildRequires:	libcaca-devel
 BuildRequires:	libcddb-devel
 BuildRequires:	libcdio-devel >= 0.77-3
@@ -140,7 +129,6 @@ BuildRequires:	pkgconfig(vorbis)
 BuildRequires:	pkgconfig(vpx)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	lirc-devel
-%{?_with_live555:BuildRequires: live555-devel >= 0-0.33}
 BuildRequires:  kernel-headers
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
@@ -148,11 +136,10 @@ BuildRequires:	libsamplerate-devel
 BuildRequires:	libshout-devel
 BuildRequires:	lua-devel
 BuildRequires:	minizip-devel
-%{?_with_libmpeg2:BuildRequires: libmpeg2-devel >= 0.3.2}
 BuildRequires:	ncurses-devel
 %{?_with_opencv:BuildRequires: pkgconfig(opencv)}
 BuildRequires:	openslp-devel
-Buildrequires:	opus-devel
+BuildRequires:	opus-devel
 BuildRequires:	pcre-devel
 BuildRequires:	pkgconfig(libarchive) >= 3.1.0
 BuildRequires:	pkgconfig(libpulse) >= 0.9.8
@@ -178,7 +165,6 @@ BuildRequires:	taglib-devel
 %{?_with_twolame:BuildRequires:	twolame-devel}
 %{?_with_vcdimager:BuildRequires: vcdimager-devel >= 0.7.21}
 %{?_with_x264:BuildRequires: x264-devel >= 0-0.8.20061028}
-%{?_with_x265:BuildRequires: x265-devel}
 %{?_with_xvidcore:BuildRequires: xvidcore-devel}
 BuildRequires:	zlib-devel
 BuildRequires:	zvbi-devel
@@ -315,7 +301,6 @@ rm aclocal.m4 m4/lib*.m4 m4/lt*.m4 || :
 	--with-binary-version=%{version}	\
 	--with-kde-solid=%{_kde4_appsdir}/solid/actions \
 	--enable-lua				\
-%{?_with_live555:--enable-live555} 		\
 %{?_with_opencv:--enable-opencv} \
 	--enable-sftp				\
 %{?_with_vcdimager:--enable-vcdx}		\
@@ -329,7 +314,6 @@ rm aclocal.m4 m4/lib*.m4 m4/lt*.m4 || :
 %{!?_with_a52dec:--disable-a52}			\
 %{!?_with_ffmpeg:--disable-avcodec --disable-avformat \
 	--disable-swscale --disable-postproc} \
-%{?_with_faad2:--enable-faad} \
 %{!?_with_libmad:--disable-mad} \
 %{?_with_twolame:--enable-twolame} \
 %{?!_without_freeworld: --enable-realrtsp} \
