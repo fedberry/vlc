@@ -305,10 +305,10 @@ rm aclocal.m4 m4/lib*.m4 m4/lt*.m4 || :
 %{?_with_vcdimager:--enable-vcdx}		\
 	--enable-omxil				\
 	--enable-omxil-vout			\
-%{?_with_rpi:
-	--enable-rpi-omxil			\
-	--enable-mmal				\
-} \
+    --enable-mmal \
+    --enable-neon \
+    --enable-gles2 \
+    MMAL_CFLAGS="-march=armv7-a -mfpu=neon-vfpv4" \
 %{?_with_aom:--enable-aom}                      \
 %{!?_with_a52dec:--disable-a52}			\
 %{!?_with_ffmpeg:--disable-avcodec --disable-avformat \
